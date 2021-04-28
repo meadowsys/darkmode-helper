@@ -1,6 +1,6 @@
 export type ColorSchemes = "light" | "dark";
 export type ColorSchemeOptions = "light" | "dark" | "system";
-export const ColorSchemeStorageKey = "choospac-display-mode";
+export const ColorSchemeStorageKey = "__darkmode-helper_mode__";
 
 /**
  * @returns `dark` if system prefers dark mode, `light` if system prefers
