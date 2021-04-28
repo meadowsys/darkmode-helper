@@ -1,0 +1,4 @@
+GITIGNORE-*
+
+node_modules
+mjs
