@@ -1,8 +1,17 @@
+/**
+ * either light or dark, represents the actual color schemes
+ * that can be presented on the UI
+ */
 export type ColorSchemes = "light" | "dark";
+/**
+ * either light, dark, or system, represents the settings that are stored.
+ * system means that light/dark is picked based on the system preference.
+ */
 export type ColorSchemeSettings = "light" | "dark" | "system";
 export const ColorSchemeStorageKey = "__darkmode-helper_mode__";
 
 /**
+ * queries the system for its preferred color scheme
  * @returns `dark` if system prefers dark mode, `light` if system prefers
  *          light mode
  */
@@ -11,7 +20,7 @@ export function getSystemPreferredColorScheme(): ColorSchemes {
 }
 
 /**
- * sets the color scheme to specified setting and applies it
+ * sets the color scheme setting to the specified and applies it
  * @param scheme color scheme to set it to, either `light`, `dark`, or `system`
  */
 export function setColorScheme(scheme: ColorSchemeSettings): void {
@@ -25,7 +34,7 @@ export function setColorScheme(scheme: ColorSchemeSettings): void {
 }
 
 /**
- * gets color scheme setting
+ * gets stored color scheme setting
  */
 export function getColorSchemeSetting(): ColorSchemeSettings {
    const stored = localStorage.getItem(ColorSchemeStorageKey);
@@ -42,7 +51,7 @@ export function getColorSchemeSetting(): ColorSchemeSettings {
 export function initColorScheme(): void {
    const scheme = getColorSchemeSetting();
 
-   useDarkMode()
+   shouldUseDarkMode()
       ? document.documentElement.classList.add("dark")
       : document.documentElement.classList.remove("dark");
 }
@@ -73,14 +82,14 @@ export function settingIsDarkMode(): boolean {
 }
 
 /**
- * @returns if the setting is set to `light`
+ * @returns true if the setting is set to `light`
  */
 export function settingIsLightMode(): boolean {
    return getColorSchemeSetting() === "light";
 }
 
 /**
- * @returns if the setting is set to `system`
+ * @returns true if the setting is set to `system`
  */
 export function settingIsSystemMode(): boolean {
    return getColorSchemeSetting() === "system";
@@ -108,7 +117,7 @@ export function setToSystemMode(): void {
 }
 
 /**
- * @returns if system should use dark mode (either setting is `dark` or
+ * @returns true if system should use dark mode (either setting is `dark`, or
  *          setting is `system` and system prefers dark mode)
  */
 export function shouldUseDarkMode(): boolean {
@@ -117,7 +126,7 @@ export function shouldUseDarkMode(): boolean {
 }
 
 /**
- * @returns if system should use light mode (either setting is `light` or
+ * @returns true if system should use light mode (either setting is `light` or
  *          setting is `system` and system prefers light mode)
  */
 export function shouldUseLightMode(): boolean {
