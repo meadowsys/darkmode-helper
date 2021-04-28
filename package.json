@@ -1,0 +1,27 @@
+{
+   "name": "darkmode-helper",
+   "version": "0.0.0",
+   "description": "small module that helps manage dark mode",
+   "type": "module",
+   "main": "mjs/node.js",
+   "module": "mjs/index.js",
+   "browser": "mjs/index.js",
+   "types": "mjs/index.d.ts",
+   "files": ["mjs"],
+   "scripts": {
+      "build": "rm -rf mjs && tsc"
+   },
+   "repository": {
+      "type": "git",
+      "url": "git+https://github.com/autumnblazey/darkmode-helper.git"
+   },
+   "author": "autumnblazey",
+   "license": "MIT",
+   "bugs": {
+      "url": "https://github.com/autumnblazey/darkmode-helper/issues"
+   },
+   "homepage": "https://github.com/autumnblazey/darkmode-helper#readme",
+   "devDependencies": {
+      "typescript": "^4.2.4"
+   }
+}
