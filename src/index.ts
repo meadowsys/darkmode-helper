@@ -10,13 +10,16 @@ export type ColorSchemes = "light" | "dark";
 export type ColorSchemeSettings = "light" | "dark" | "system";
 export const ColorSchemeStorageKey = "__darkmode-helper_mode__";
 
+const matcher = matchMedia("(prefers-color-scheme: dark)");
+matcher.addEventListener("change", () => initColorScheme());
+
 /**
  * queries the system for its preferred color scheme
  * @returns `dark` if system prefers dark mode, `light` if system prefers
  *          light mode
  */
 export function getSystemPreferredColorScheme(): ColorSchemes {
-   return matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+   return matcher.matches ? "dark" : "light";
 }
 
 /**
