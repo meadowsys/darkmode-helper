@@ -22,6 +22,6 @@
    },
    "homepage": "https://github.com/autumnblazey/darkmode-helper#readme",
    "devDependencies": {
-      "typescript": "^4.2.4"
+      "typescript": "^4.5.5"
    }
 }
