@@ -32,6 +32,28 @@ export function get_matcher() {
 
 //#endregion
 
+//#region classname
+
+let classname = "dark";
+
+/**
+ * get the name of the class that is applied to the root element of the html when
+ * dark mode is enabled
+ */
+export function get_classname() {
+   return classname;
+}
+
+/**
+ * set the name of the class that is applied to the root element of the html when
+ * dark mode is enabled
+ */
+export function set_classname(c: string) {
+   classname = c;
+}
+
+//#endregion
+
 //#region local storage key
 
 /**
@@ -179,8 +201,8 @@ export function should_use_light_mode(): boolean {
  */
 export function init(): void {
    should_use_dark_mode()
-      ? document.documentElement.classList.add("dark")
-      : document.documentElement.classList.remove("dark");
+      ? document.documentElement.classList.add(classname)
+      : document.documentElement.classList.remove(classname);
 }
 
 /**

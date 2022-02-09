@@ -6,6 +6,7 @@
 - listen to events from the media matcher and rerun `init` when that happens
 - added `set_local_storage_key` and `get_local_storage_key` to change the localStorage key of where to store the setting
 - use one global media matcher (don't create a new one every time one is needed) and provide `get_matcher` to expose it to end users
+- added a way to get/set classname of dark mode class
 
 ## v0.2.1
 
