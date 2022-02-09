@@ -1,28 +1,11 @@
 # darkmode-helper <!-- omit in toc -->
 
-small module to help manage dark mode. It provides functions for toggling dark mode, switching between light and dark modes, using system mode, and automatically saves the preference in local storage. Also works with [tailwindcss](https://tailwindcss.com/) with dark mode set to "class".
+small module to help manage dark mode. It provides functions for toggling dark mode, switching between light and dark modes, using system mode, and automatically saves the preference in local storage. Also works with [windicss] / [tailwindcss] with dark mode set to "class".
 
 ## Table of Contents <!-- omit in toc -->
 
 - [install](#install)
 - [usage](#usage)
-  - [types](#types)
-    - [ColorSchemes](#colorschemes)
-    - [ColorSchemeSettings](#colorschemesettings)
-  - [methods](#methods)
-    - [getSystemPreferredColorScheme](#getsystempreferredcolorscheme)
-    - [getColorSchemeSetting](#getcolorschemesetting)
-    - [setColorScheme](#setcolorscheme)
-    - [initColorScheme](#initcolorscheme)
-    - [toggleDisplayMode](#toggledisplaymode)
-    - [settingIsDarkMode](#settingisdarkmode)
-    - [settingIsLightMode](#settingislightmode)
-    - [settingIsSystemMode](#settingissystemmode)
-    - [setToDarkMode](#settodarkmode)
-    - [setToLightMode](#settolightmode)
-    - [setToSystemMode](#settosystemmode)
-    - [shouldUseDarkMode](#shouldusedarkmode)
-    - [shouldUseLightMode](#shoulduselightmode)
 - [license](#license)
 
 ## install
@@ -38,15 +21,19 @@ pnpm i -D darkmode-helper
 Use this with a frontend bundler. CDN not supported at the moment, sorry!
 
 ```ts
-import { initColorScheme, setToLightMode, setToDarkMode } from "darkmode-helper";
+import { init, set_to_light_mode, set_to_dark_mode } from "darkmode-helper";
 
-document.querySelector("#lightbutton").onclick = () => setToLightMode();
-document.querySelector("#darkbutton").onclick = () => setToDarkMode();
-initColorScheme();
+document.querySelector("#light-button").onclick = () => set_to_light_mode();
+document.querySelector("#dark-button").onclick = () => set_to_dark_mode();
+init();
 ```
 
 To detect the mode, query for the class `.dark` on the `<body>` tag. If it is there, dark mode is on; if not, light mode. The setting defaults to using system's color scheme mode.
 
+This module does ship documentation in the form of jsdoc comments.
+
+<!--
+THis is old outdated usage, in case I decide to write it here again
 ### types
 
 #### ColorSchemes
@@ -150,7 +137,11 @@ sets to system preferred mode
 **signature** `function shouldUseLightMode(): boolean`
 
 **returns** true if system should use light mode (either setting is `light` or setting is `system` and system prefers light mode)
+-->
 
 ## license
 
 [MIT](LICENSE)
+
+[windicss]: https://windicss.org
+[tailwindcss]: https://tailwindcss.com/
