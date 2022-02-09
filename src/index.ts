@@ -15,9 +15,20 @@ export type ColourSchemeSettings = "light" | "dark" | "system";
 /** localstorage key to use to store the setting */
 let colour_scheme_localstorage_key = "__darkmode-helper_mode__";
 
+//#endregion
+
+//#region matcher
+
 /** one instance of matcher, don't create a new one every time (probably microoptimisation) */
 const matcher_prefers_dark = matchMedia("(prefers-color-scheme: dark)");
 matcher_prefers_dark.addEventListener("change", () => init());
+
+/**
+ * get the media matcher used internally. This matcher tests for `prefers-color-scheme: dark`
+ */
+export function get_matcher() {
+   return matcher_prefers_dark;
+}
 
 //#endregion
 
