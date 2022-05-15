@@ -1,38 +1,34 @@
 ---
-name: publish
+name: "publish"
 on:
   push:
     tags:
-    - v*
+    - "v*"
 
 jobs:
   publish:
-    name: publish to npm
-    runs-on: ubuntu-20.04
+    name: "publish to npm"
+    runs-on: "ubuntu-22.04"
 
     steps:
     - name: "checkout code"
-      uses: "actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579" # v2.4.0
+      uses: "actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b" # v3.0.2
+
     - name: "setup node"
-      uses: "actions/setup-node@1f8c6b94b26d0feae1e387ca63ccbdc44d27b561" # v2.5.1
+      uses: "actions/setup-node@56337c425554a6be30cdef71bf441f15be286854" # v3.1.1
       with:
-        node-version: "16.14.0"
+        node-version: "16.15.0"
+        cache: "pnpm"
+
     - name: "setup pnpm"
-      run: "npm i -g pnpm@6.30.0"
-    - name: "cache pnpm store"
-      uses: "actions/cache@937d24475381cd9c75ae6db12cb4e79714b926ed" # v2.1.7
-      with:
-        path: "~/.pnpm-store"
-        key: pnpm-store-cache-${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
-        restore-keys: |
-          pnpm-store-cache-${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
-          pnpm-store-cache-${{ runner.os }}-
-          pnpm-store-cache-
+      uses: "pnpm/action-setup@35ab4267a1a21c8e8cb1c087cf1642e891ff57bd" # 2.2.1
+
     - name: "install dependencies"
       run: "pnpm i"
 
-    - name: build
-      run: pnpm run build
+    - name: bu""ild
+      run: "pnpm run build"
+
     - name: "publish to npm"
       run: |
         cp .github/.npmrc .npmrc

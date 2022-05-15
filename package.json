@@ -2,12 +2,15 @@
    "name": "darkmode-helper",
    "version": "0.0.0",
    "description": "small module that helps manage dark mode",
+   "packageManager": "pnpm@7.0.1",
    "type": "module",
    "main": "mjs/node.js",
    "module": "mjs/index.js",
    "browser": "mjs/index.js",
    "types": "mjs/index.d.ts",
-   "files": ["mjs"],
+   "files": [
+      "mjs"
+   ],
    "scripts": {
       "build": "rm -rf mjs && tsc"
    },
@@ -22,6 +25,6 @@
    },
    "homepage": "https://github.com/autumnblazey/darkmode-helper#readme",
    "devDependencies": {
-      "typescript": "^4.5.5"
+      "typescript": "^4.6.4"
    }
 }
