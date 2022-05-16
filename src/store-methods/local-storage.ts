@@ -1,4 +1,4 @@
-import * as h from "..";
+import * as h from "../helpers";
 
 /** this helper uses `localStorage` as the method of storing the preferences. */
 export function create_local_storage(store_key: string): h.DarkModeHelper<"sync"> {
@@ -10,7 +10,7 @@ export function create_local_storage(store_key: string): h.DarkModeHelper<"sync"
 
 	function get(): h.ColourScheme {
 		let setting = get_setting();
-		return setting === "system" ? h.get_system_preference() : setting;
+		return h.setting_to_mode(setting);
 	}
 
 	function set(s: h.ColourSchemeSetting) {
