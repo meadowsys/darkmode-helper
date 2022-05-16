@@ -18,31 +18,42 @@ export type ColourSchemeSetting =
 	| "dark"
 	| "system";
 
-export type DarkModeHelper<Sync extends "sync" | "async"> = {
+export type WatchCallback = (s: ColourScheme) => void;
+
+export type DarkModeHelper<S extends "sync" | "async", W extends boolean = false> = {
 	/** gets the mode that should be used, either "light" or "dark" */
-	get: Sync extends "sync"
+	get: S extends "sync"
 		? () => ColourScheme
 		: () => Promise<ColourScheme>;
 
 	/** gets the setting that is set, either "light", "dark", or "system" */
-	get_setting: Sync extends "sync"
+	get_setting: S extends "sync"
 		? () => ColourSchemeSetting
 		: () => Promise<ColourSchemeSetting>;
 
 	/** changes the setting to one of "light", "dark", or "system" */
-	set: Sync extends "sync"
+	set: S extends "sync"
 		? (s: ColourSchemeSetting) => void
 		: (s: ColourSchemeSetting) => Promise<void>;
+} & (W extends true ? {
+	/**
+	 * register a listener for when the setting changes.
+	 * Provide a key for more convenient unregistering.
+	 */
+	watch: {
+		(cb: WatchCallback): void;
+		(key: string, cb: WatchCallback): void;
+	};
 
-	// watch: {
-	// 	(cb: (s: ColourSchemeSetting) => void): void;
-	// 	(key: string, cb: (s: ColourSchemeSetting) => void): void;
-	// }
-	// unwatch: {
-	// 	(cb: (s: ColourSchemeSetting) => void): void;
-	// 	(key: string): void;
-	// }
-};
+	/**
+	 * remove a listener function previously registered,
+	 * either by function or previously provided key
+	 */
+	unwatch: {
+		(cb: WatchCallback): void;
+		(key: string): void;
+	};
+} : {});
 
 /** queries the system for its preferred colour scheme, either "light" or "dark" */
 export function get_system_preference(): ColourScheme {
