@@ -67,3 +67,15 @@ export function create_settings_cache(cb: (c: ColourSchemeModeAndSetting) => voi
 
 	return { get, set, update };
 }
+
+export async function init_setting(
+	get_setting: () => Promise<ColourSchemeSetting>,
+	set_setting: (s: ColourSchemeSetting) => Promise<void>
+) {
+	const current_setting = await get_setting();
+	if (
+		current_setting !== "dark"
+		&& current_setting !== "light"
+		&& current_setting !== "system"
+	) await set_setting("system");
+}

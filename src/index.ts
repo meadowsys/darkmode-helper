@@ -7,6 +7,8 @@ import {
 	create_settings_cache
 } from "./helpers";
 
+export * from "./stores";
+
 export async function define_darkmode_helper(
 	_settings_store: SettingStore | Promise<SettingStore>
 ) {
