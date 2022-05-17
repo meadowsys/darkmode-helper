@@ -4,6 +4,8 @@ import * as h from "../helpers";
 export function create_local_storage(store_key: string): h.DarkModeHelper<"sync", true> {
 	let event_listener_store = h.create_event_listener_store("sync", get_setting);
 
+	return { get, get_setting, set, watch, unwatch };
+
 	function get_setting(): h.ColourSchemeSetting {
 		return (localStorage.getItem(store_key) || "system") as h.ColourSchemeSetting;
 	}
@@ -26,6 +28,4 @@ export function create_local_storage(store_key: string): h.DarkModeHelper<"sync"
 		let listener = event_listener_store.get_function(watch_cb);
 		listener && h.matcher_prefers_dark.removeEventListener("change", listener);
 	}
-
-	return { get, get_setting, set, watch, unwatch };
 }
