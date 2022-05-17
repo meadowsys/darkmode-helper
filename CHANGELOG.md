@@ -1,5 +1,17 @@
 # changelog
 
+## v0.4.0
+
+- redid everything YET AGAIN
+- can create individual instances (not one global instance) using `define_darkmode_helper`, which returns a function `use_darkmode_helper`. Call `use_darkmode_helper` to get the same instance every time.
+  - `get` to get the mode, either `light` or `dark`
+  - `get_setting` to get the currently set setting
+  - `get_setting_and_mode` convenience function for `get` and `get_setting`
+  - `set_setting` sets the setting. Triggers all watchers
+  - `watch` watch for setting and system preference changes
+  - `unwatch` pass the same callback you passed to `watch` to remove it
+- Setting stores to specify the storage backend. Two provided OOTB, one that uses localStorage and one that provides a way for you to provide your own functions to get/set setting from a backend
+
 ## v0.3.0
 
 - redid everything again (basically made everything lower_snake_case)
