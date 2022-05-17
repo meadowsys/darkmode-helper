@@ -118,3 +118,10 @@ export function watch(event_listener_store: ReturnType<typeof create_event_liste
 		matcher_prefers_dark.addEventListener("change", listener);
 	};
 }
+
+export function unwatch(event_listener_store: ReturnType<typeof create_event_listener_store>) {
+	return (watch_cb: WatchCallback) => {
+		const listener = event_listener_store.get_function(watch_cb);
+		listener && matcher_prefers_dark.removeEventListener("change", listener);
+	};
+}

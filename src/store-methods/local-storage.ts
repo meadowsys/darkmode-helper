@@ -20,10 +20,7 @@ export function create_local_storage(store_key: string): h.DarkModeHelper<"sync"
 
 	const watch = h.watch(event_listener_store);
 
-	function unwatch(watch_cb: h.WatchCallback) {
-		const listener = event_listener_store.get_function(watch_cb);
-		listener && h.matcher_prefers_dark.removeEventListener("change", listener);
-	}
+	const unwatch = h.unwatch(event_listener_store);
 
 	return { get, get_setting, set, watch, unwatch };
 }
