@@ -5,14 +5,14 @@ export function create_custom(
 	set_setting_to_storage: (s: h.ColourSchemeSetting) => void,
 	// watch: (s: h.ColourSchemeSetting) => void
 ): h.DarkModeHelper<"sync"> {
-	let event_listener_store = h.create_event_listener_store("sync", get_setting);
+	const event_listener_store = h.create_event_listener_store("sync", get_setting);
 
 	function get_setting(): h.ColourSchemeSetting {
 		return get_setting_from_storage();
 	}
 
 	function get(): h.ColourScheme {
-		let setting = get_setting();
+		const setting = get_setting();
 		return h.setting_to_mode(setting);
 	}
 
@@ -24,7 +24,7 @@ export function create_custom(
 	const watch = h.watch(event_listener_store);
 
 	function unwatch(watch_cb: h.WatchCallback) {
-		let listener = event_listener_store.get_function(watch_cb);
+		const listener = event_listener_store.get_function(watch_cb);
 		listener && h.matcher_prefers_dark.removeEventListener("change", listener);
 	}
 
