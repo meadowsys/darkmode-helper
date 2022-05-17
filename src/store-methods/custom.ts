@@ -7,8 +7,6 @@ export function create_custom(
 ): h.DarkModeHelper<"sync"> {
 	let event_listener_store = h.create_event_listener_store("sync", get_setting);
 
-	return { get, get_setting, set, watch, unwatch };
-
 	function get_setting(): h.ColourSchemeSetting {
 		return get_setting_from_storage();
 	}
@@ -32,4 +30,6 @@ export function create_custom(
 		let listener = event_listener_store.get_function(watch_cb);
 		listener && h.matcher_prefers_dark.removeEventListener("change", listener);
 	}
+
+	return { get, get_setting, set, watch, unwatch };
 }
