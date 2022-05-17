@@ -8,6 +8,14 @@ import {
 } from "./helpers";
 
 export * from "./stores";
+export type {
+	ColourScheme,
+	ColourSchemeModeAndSetting,
+	ColourSchemeSetting,
+	MediaQueryCallback,
+	SettingStore,
+	WatchCallback
+} from "./helpers";
 
 export async function define_darkmode_helper(
 	_settings_store: SettingStore | Promise<SettingStore>
