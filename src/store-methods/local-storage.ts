@@ -1,7 +1,7 @@
 import * as h from "../helpers";
 
 /** this helper uses `localStorage` as the method of storing the preferences. */
-export function create_local_storage(store_key: string): h.DarkModeHelper<"sync", true> {
+export function create_local_storage(store_key: string): h.DarkModeHelper<"sync"> {
 	let event_listener_store = h.create_event_listener_store("sync", get_setting);
 
 	return { get, get_setting, set, watch, unwatch };

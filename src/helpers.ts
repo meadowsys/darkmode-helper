@@ -36,7 +36,7 @@ export type DarkModeHelper<S extends "sync" | "async", W extends boolean = false
 	set: S extends "sync"
 		? (s: ColourSchemeSetting) => void
 		: (s: ColourSchemeSetting) => Promise<void>;
-} & (W extends true ? {
+
 	/**
 	 * register a listener for when the setting changes.
 	 * Provide a key for more convenient unregistering.
@@ -48,7 +48,7 @@ export type DarkModeHelper<S extends "sync" | "async", W extends boolean = false
 	 * either by function or previously provided key
 	 */
 	unwatch: (cb: WatchCallback) => void;
-} : {});
+};
 
 /** queries the system for its preferred colour scheme, either "light" or "dark" */
 export function get_system_preference(): ColourScheme {
