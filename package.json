@@ -18,7 +18,10 @@
       "type": "git",
       "url": "git+https://github.com/autumnblazey/darkmode-helper.git"
    },
-   "author": "autumnblazey",
+   "author": {
+      "name": "Autumn Meadow",
+      "url": "https://github.com/autumnblazey"
+   },
    "license": "MIT",
    "bugs": {
       "url": "https://github.com/autumnblazey/darkmode-helper/issues"
