@@ -79,29 +79,25 @@ export function create_event_listener_store<S extends "sync" | "async">(
 	type: S,
 	get_setting: DarkModeHelper<S>["get_setting"]
 ) {
+	const create_matcher_event_listener_fn = type === "sync"
+			? create_matcher_event_listener_sync
+			: create_matcher_event_listener_async;
+
 	let stored_fns: Array<[
 		WatchCallback,
-		MediaQueryCallback,
-		string?
+		MediaQueryCallback
 	]> = [];
 
 	return { store_function, get_function };
 
-	function store_function(watch_cb: WatchCallback, key?: string): MediaQueryCallback {
-		let media_query_cb = type === "sync"
-			? create_matcher_event_listener_sync(get_setting as any, watch_cb)
-			: create_matcher_event_listener_async(get_setting as any, watch_cb);
-
-		key
-			? stored_fns.push([watch_cb, media_query_cb, key])
-			: stored_fns.push([watch_cb, media_query_cb]);
+	function store_function(watch_cb: WatchCallback): MediaQueryCallback {
+		let media_query_cb = create_matcher_event_listener_fn(get_setting as any, watch_cb);
+		stored_fns.push([watch_cb, media_query_cb]);
 
 		return media_query_cb;
 	}
 
-	function get_function(fn: WatchCallback | string) {
-		return typeof fn === "string"
-			? stored_fns.find(sf => fn === sf[2])?.[1]
-			: stored_fns.find(sf => fn === sf[0])?.[1];
+	function get_function(fn: WatchCallback) {
+		return stored_fns.find(sf => fn === sf[0])?.[1];
 	}
 }
