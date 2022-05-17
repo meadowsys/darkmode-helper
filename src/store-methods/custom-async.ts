@@ -19,6 +19,7 @@ export function create_custom_async(
 	}
 
 	function set(s: h.ColourSchemeSetting) {
+		event_listener_store.call_on_all_cbs(s);
 		return set_setting_to_storage(s);
 	}
 

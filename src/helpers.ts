@@ -88,7 +88,7 @@ export function create_event_listener_store<S extends "sync" | "async">(
 		MediaQueryCallback
 	]> = [];
 
-	return { store_function, get_function };
+	return { store_function, get_function, call_on_all_cbs };
 
 	function store_function(watch_cb: WatchCallback): MediaQueryCallback {
 		let media_query_cb = create_matcher_event_listener_fn(get_setting as any, watch_cb);
@@ -97,7 +97,17 @@ export function create_event_listener_store<S extends "sync" | "async">(
 		return media_query_cb;
 	}
 
-	function get_function(fn: WatchCallback) {
-		return stored_fns.find(sf => fn === sf[0])?.[1];
+	function get_function(fn: WatchCallback, remove = true) {
+		const i = stored_fns.findIndex(sf => fn === sf[0]);
+		const found_fn = remove
+			? stored_fns.splice(i, 1)[0]
+			: stored_fns[i];
+
+		return found_fn?.[1];
+	}
+
+	function call_on_all_cbs(setting: ColourSchemeSetting) {
+		let mode = setting_to_mode(setting);
+		stored_fns.forEach(([watch_cb]) => watch_cb(mode));
 	}
 }

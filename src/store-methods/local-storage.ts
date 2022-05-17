@@ -16,6 +16,7 @@ export function create_local_storage(store_key: string): h.DarkModeHelper<"sync"
 	}
 
 	function set(s: h.ColourSchemeSetting) {
+		event_listener_store.call_on_all_cbs(s);
 		localStorage.setItem(store_key, s);
 	}
 
