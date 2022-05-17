@@ -111,3 +111,10 @@ export function create_event_listener_store<S extends "sync" | "async">(
 		stored_fns.forEach(([watch_cb]) => watch_cb(mode));
 	}
 }
+
+export function watch(event_listener_store: ReturnType<typeof create_event_listener_store>) {
+	return (watch_cb: WatchCallback) => {
+		const listener = event_listener_store.store_function(watch_cb);
+		matcher_prefers_dark.addEventListener("change", listener);
+	};
+}
