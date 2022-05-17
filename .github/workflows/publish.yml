@@ -14,19 +14,19 @@ jobs:
     - name: "checkout code"
       uses: "actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b" # v3.0.2
 
+    - name: "setup pnpm"
+      uses: "pnpm/action-setup@35ab4267a1a21c8e8cb1c087cf1642e891ff57bd" # 2.2.1
+
     - name: "setup node"
       uses: "actions/setup-node@56337c425554a6be30cdef71bf441f15be286854" # v3.1.1
       with:
         node-version: "16.15.0"
         cache: "pnpm"
 
-    - name: "setup pnpm"
-      uses: "pnpm/action-setup@35ab4267a1a21c8e8cb1c087cf1642e891ff57bd" # 2.2.1
-
     - name: "install dependencies"
       run: "pnpm i"
 
-    - name: bu""ild
+    - name: "build"
       run: "pnpm run build"
 
     - name: "publish to npm"
