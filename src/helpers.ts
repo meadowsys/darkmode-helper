@@ -41,19 +41,13 @@ export type DarkModeHelper<S extends "sync" | "async", W extends boolean = false
 	 * register a listener for when the setting changes.
 	 * Provide a key for more convenient unregistering.
 	 */
-	watch: {
-		(cb: WatchCallback): void;
-		(key: string, cb: WatchCallback): void;
-	};
+	watch: (cb: WatchCallback) => void;
 
 	/**
 	 * remove a listener function previously registered,
 	 * either by function or previously provided key
 	 */
-	unwatch: {
-		(cb: WatchCallback): void;
-		(key: string): void;
-	};
+	unwatch: (cb: WatchCallback) => void;
 } : {});
 
 /** queries the system for its preferred colour scheme, either "light" or "dark" */

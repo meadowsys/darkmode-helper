@@ -17,19 +17,14 @@ export function create_local_storage(store_key: string): h.DarkModeHelper<"sync"
 		localStorage.setItem(store_key, s);
 	}
 
-	const watch: h.DarkModeHelper<"sync", true>["watch"] = (arg1, arg2 = undefined) => {
-		if (typeof arg1 === "function") {
-			let listener = event_listener_store.store_function(arg1);
-			h.matcher_prefers_dark.addEventListener("change", listener);
-		} else if (typeof arg1 === "string" && typeof arg2 === "function") {
-			let listener = event_listener_store.store_function(arg2 as any, arg1);
-			h.matcher_prefers_dark.addEventListener("change", listener);
-		}
+	function watch(watch_cb: h.WatchCallback) {
+		let listener = event_listener_store.store_function(watch_cb);
+		h.matcher_prefers_dark.addEventListener("change", listener);
 	}
 
-	function unwatch(key: h.WatchCallback | string) {
-		let fn = event_listener_store.get_function(key);
-		fn && h.matcher_prefers_dark.removeEventListener("change", fn);
+	function unwatch(watch_cb: h.WatchCallback) {
+		let listener = event_listener_store.get_function(watch_cb);
+		listener && h.matcher_prefers_dark.removeEventListener("change", listener);
 	}
 
 	return { get, get_setting, set, watch, unwatch };
