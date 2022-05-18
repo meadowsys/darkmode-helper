@@ -18,9 +18,10 @@ export type ColourSchemeSetting =
 	| "dark"
 	| "system";
 
+/** callback for watcher */
 export type WatchCallback = (s: ColourScheme) => void;
-export type MediaQueryCallback = (e: MediaQueryListEvent) => void;
 
+/** store of the settings. Provides two methods to get/set the setting however it needs to */
 export type SettingStore = {
 	get_setting: () => Promise<ColourSchemeSetting>;
 	set_setting: (s: ColourSchemeSetting) => Promise<void>;
@@ -40,11 +41,16 @@ function setting_to_mode(s: ColourSchemeSetting) {
 	return s === "system" ? get_system_preference() : s;
 }
 
+/** mode and colour scheme setting all in one */
 export type ColourSchemeModeAndSetting = {
 	mode: ColourScheme;
 	setting: ColourSchemeSetting;
 };
 
+/**
+ * wrapper for two variables to cache the setting, to prevent from having to
+ * query expensive backends for example.
+ */
 export function create_settings_cache(cb: (c: ColourSchemeModeAndSetting) => void) {
 	let setting: ColourSchemeSetting = "system";
 	let mode: ColourScheme = setting_to_mode(setting);
@@ -68,6 +74,10 @@ export function create_settings_cache(cb: (c: ColourSchemeModeAndSetting) => voi
 	return { get, set, update };
 }
 
+/**
+ * checks the setting backend for nonexistent / wrong settings and updates them
+ * with a default of `system`
+ */
 export async function init_setting(
 	get_setting: () => Promise<ColourSchemeSetting>,
 	set_setting: (s: ColourSchemeSetting) => Promise<void>

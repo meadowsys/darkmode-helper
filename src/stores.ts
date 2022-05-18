@@ -15,6 +15,13 @@ export async function create_local_storage(key = "__darkmode-helper_mode__"): Pr
 	return { get_setting, set_setting };
 }
 
+/**
+ * create a customised storage method. Provide two functions:
+ *
+ * - The first parameter is a function (sync or async) that returns the stored setting.
+ * - The second parameter is a function (sync or async) that takes a mode in as a parameter
+ * and saves it, returning/resolving when done.
+ */
 export async function create_custom(
 	_get_setting: () => ColourSchemeSetting | Promise<ColourSchemeSetting>,
 	_set_setting: (s: ColourSchemeSetting) => void | Promise<void>

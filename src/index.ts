@@ -14,7 +14,6 @@ export type {
 	ColourScheme,
 	ColourSchemeModeAndSetting,
 	ColourSchemeSetting,
-	MediaQueryCallback,
 	SettingStore,
 	WatchCallback
 } from "./helpers";
