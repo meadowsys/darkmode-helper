@@ -18,6 +18,9 @@ export type {
 	WatchCallback
 } from "./helpers";
 
+/**
+ * creates a dark mode helper
+ */
 export async function define_darkmode_helper(
 	_settings_store: SettingStore | Promise<SettingStore>
 ) {

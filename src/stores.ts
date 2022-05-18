@@ -1,6 +1,11 @@
 import type { ColourSchemeSetting, SettingStore } from "./helpers";
 import { init_setting } from "./helpers";
 
+/**
+ * creates a storage method using localStorage.
+ *
+ * @param key optionally specify the key to store in. default is "__darkmode-helper_mode__"
+ */
 export async function create_local_storage(key = "__darkmode-helper_mode__"): Promise<SettingStore> {
 	async function get_setting(): Promise<ColourSchemeSetting> {
 		return localStorage.getItem(key) as ColourSchemeSetting;

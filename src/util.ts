@@ -1,4 +1,9 @@
-import { ColourScheme, ColourSchemeModeAndSetting,  ColourSchemeSetting,  WatchCallback } from "./helpers";
+import {
+	ColourScheme,
+	ColourSchemeModeAndSetting,
+	ColourSchemeSetting,
+	WatchCallback
+} from "./helpers";
 
 /**
  * a watcher to pass to the darkmode helper to automaticall add `dark` class
@@ -11,17 +16,34 @@ export const dark_watcher: WatchCallback = mode_class_watcher("mode", "dark", "d
  */
 export const light_watcher: WatchCallback = mode_class_watcher("mode", "light", "light");
 
-export function mode_class_watcher(type: "mode", set_mode: ColourScheme, class_name: string): WatchCallback;
-export function mode_class_watcher(type: "setting", set_setting: ColourSchemeSetting, class_name: string): WatchCallback;
+/**
+ * returns a watcher that adds the specified class when the mode is the specified
+ * mode.
+ *
+ * @param type `mode`, sets if the mode matches
+ * @param set_mode mode to add on
+ * @param class_name class to add to `document.documentElement`
+ */
+export function mode_class_watcher(
+	type: "mode",
+	set_mode: ColourScheme,
+	class_name: string
+): WatchCallback;
 
 /**
  * returns a watcher that adds the specified class when the mode is the specified
  * mode.
  *
- * @param type `mode` if set if mode matches, `setting` to set if setting matches (it matches on `system` too)
+ * @param type `setting`, sets if the setting matches (it matches on `system` too)
  * @param set_mode mode to add on
  * @param class_name class to add to `document.documentElement`
  */
+export function mode_class_watcher(
+	type: "setting",
+	set_setting: ColourSchemeSetting,
+	class_name: string
+): WatchCallback;
+
 export function mode_class_watcher(
 	type: "mode" | "setting",
 	set_mode: ColourScheme | ColourSchemeSetting,
