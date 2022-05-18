@@ -18,8 +18,14 @@ export type ColourSchemeSetting =
 	| "dark"
 	| "system";
 
+/** mode and colour scheme setting all in one */
+export type ColourSchemeModeAndSetting = {
+	mode: ColourScheme;
+	setting: ColourSchemeSetting;
+};
+
 /** callback for watcher */
-export type WatchCallback = (s: ColourScheme) => void;
+export type WatchCallback = (s: ColourSchemeModeAndSetting) => void;
 
 /** store of the settings. Provides two methods to get/set the setting however it needs to */
 export type SettingStore = {
@@ -40,12 +46,6 @@ function get_system_preference(): ColourScheme {
 function setting_to_mode(s: ColourSchemeSetting) {
 	return s === "system" ? get_system_preference() : s;
 }
-
-/** mode and colour scheme setting all in one */
-export type ColourSchemeModeAndSetting = {
-	mode: ColourScheme;
-	setting: ColourSchemeSetting;
-};
 
 /**
  * wrapper for two variables to cache the setting, to prevent from having to
