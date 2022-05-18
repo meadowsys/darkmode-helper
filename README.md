@@ -37,8 +37,6 @@ document.querySelector("#light-button").onclick = () => helper.set_setting("ligh
 document.querySelector("#system-button").onclick = () => helper.set_setting("system");
 ```
 
-To detect the mode, query for the class `.dark` on the `<body>` tag. If it is there, dark mode is on; if not, light mode. The setting defaults to using system's color scheme mode.
-
 This module does ship documentation in the form of jsdoc comments.
 
 ## license
