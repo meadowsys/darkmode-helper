@@ -1,5 +1,5 @@
 /** one instance of matcher, don't create a new one every time (probably microoptimisation) */
-export const matcher_prefers_dark = matchMedia("(prefers-color-scheme: dark)");
+const matcher_prefers_dark = matchMedia("(prefers-color-scheme: dark)");
 
 /**
  * either light or dark, represents the actual colour schemes
@@ -28,7 +28,7 @@ export type SettingStore = {
 };
 
 /** queries the system for its preferred colour scheme, either "light" or "dark" */
-export function get_system_preference(): ColourScheme {
+function get_system_preference(): ColourScheme {
 	return matcher_prefers_dark.matches ? "dark" : "light";
 }
 
