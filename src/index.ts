@@ -8,6 +8,8 @@ import {
 } from "./helpers";
 
 export * from "./stores";
+export * from "./util";
+
 export type {
 	ColourScheme,
 	ColourSchemeModeAndSetting,
