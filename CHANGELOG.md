@@ -1,6 +1,6 @@
 # changelog
 
-## v0.4.0
+## ~~v0.4.0~~ v0.4.2 (I did a publishing oopsie)
 
 - redid everything YET AGAIN
 - can create individual instances (not one global instance) using `define_darkmode_helper`, which returns a function `use_darkmode_helper`. Call `use_darkmode_helper` to get the same instance every time.
@@ -10,7 +10,8 @@
   - `set_setting` sets the setting. Triggers all watchers
   - `watch` watch for setting and system preference changes
   - `unwatch` pass the same callback you passed to `watch` to remove it
-- Setting stores to specify the storage backend. Two provided OOTB, one that uses localStorage and one that provides a way for you to provide your own functions to get/set setting from a backend
+- Setting stores to specify the storage backend. Two provided OOTB, `create_local_storage`: uses localStorage , and `create_custom`: provides a way for you to provide your own functions to get/set setting from a backend
+- `dark_watcher` and `light_watcher` to watch for `dark` and `light` modes, and add/remove `.dark` and `.light` to `document.documentElement` respectively, as well as `mode_class_watcher`, to watch for the specified mode and apply the specified class on specified setting
 
 ## v0.3.0
 
